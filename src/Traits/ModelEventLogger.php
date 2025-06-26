@@ -93,7 +93,7 @@ trait ModelEventLogger
 
             $logAttributes = $model->attributesShouldBeLogged();
             
-            if (array_key_exists($relationName2, $logAttributes)) {
+            if (is_string($relationName2) && array_key_exists($relationName2, $logAttributes)) {
                 foreach ($pivotIdsAttributes as $attributeId) {
                     $related = $model->$relationName2()->getRelated();
                     $relatedData = $related->select($logAttributes[$relationName2])->whereId($attributeId)->get();
@@ -121,7 +121,7 @@ trait ModelEventLogger
 
             $logAttributes = $model->attributesShouldBeLogged();
             
-            if (array_key_exists($relationName2, $logAttributes)) {
+            if (is_string($relationName2) && array_key_exists($relationName2, $logAttributes)) {
                 foreach ($pivotIdsAttributes as $attributeId) {
                     $related = $model->$relationName2()->getRelated();
                     $relatedData = $related->select($logAttributes[$relationName2])->whereId($attributeId)->get();
